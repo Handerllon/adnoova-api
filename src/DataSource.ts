@@ -8,13 +8,12 @@ dotenv.config({
     path: path.resolve(__dirname, '../.env')
   })
 
-const MongoDataSource = new DataSource({
+export const MongoDataSource = new DataSource({
     type: 'mongodb',
     url: process.env.MONGO_CONN_STRING, // Replace with your MongoDB connection URL and database name
     database: "Adnoova",
     entities: [Client],
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    synchronize: true,
+    logging: false,
 })
-
-export {MongoDataSource}

@@ -4,9 +4,10 @@ import * as cors from "cors";
 import bodyParser = require("body-parser");
 import path = require("path");
 import "reflect-metadata";
+import { DataSource } from "typeorm";
+import { MongoDataSource } from "./DataSource";
 import { TestRouter } from "./routes/TestRouter";
 import { ContactRouter } from "./routes/ContactRouter";
-import { MongoDataSource } from "./DataSource";
 
 class App {
   public app: express.Application;
@@ -31,8 +32,8 @@ class App {
     this.initializeRoutes();
 
     // initialize database
-    const database = MongoDataSource
-    database.initialize()
+    const Mongo: DataSource = MongoDataSource;
+    Mongo.initialize();
   }
 
   private initializeRoutes() {
