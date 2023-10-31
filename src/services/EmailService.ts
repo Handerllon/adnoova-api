@@ -51,7 +51,6 @@ export class EmailService {
     async sendEmail(data: { cliente: string; nombre: string; email: string; telefono: string; mensaje: string;}): Promise<any> {
         try {
             const client = await EmailService.repository.findOneBy({clientName: data.cliente})
-            console.log(client)
 
             let transporter = nodemailer.createTransport({
                 host: 'smtp.hostinger.com',
