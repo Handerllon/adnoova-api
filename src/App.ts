@@ -50,8 +50,24 @@ class App {
         next(); // Continue processing the request
       }
     );
+
+    const corsOptions = {
+      "origin": "*",
+      "allowedHeaders": [
+          "Origin",
+          "X-Requested-With",
+          "Content-Type",
+          "Accept",
+          "X-Access-Token",
+          "Access-Control-Allow-Origin"
+      ],
+      "credentials": false,
+      "methods": "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+      "preflightContinue": false
+    }
+
+    this.app.use(cors(corsOptions));
     this.app.use("/", this.router);
-    this.app.use(cors());
 
     new TestRouter().routes(this.router);
     new ContactRouter().routes(this.router);
